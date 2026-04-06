@@ -6,7 +6,7 @@
     <title>Workshops | VTEC - Technical Training & Hands-On Learning</title>
     <meta name="description" content="Register for VTEC's technical workshops in robotics, AI, and industrial automation. Hands-on training delivered by practitioners in Jordan.">
 
-    <!-- SEO & Social -->
+    <!-- SEO & Social: Meta tags for search engines and social media sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vtec.example.com/workshops.html">
     <meta property="og:title" content="Technical Workshops | VTEC">
@@ -34,6 +34,7 @@
 <body>
 
     <header id="header" class="header">
+        <!-- Section: Navigation - Sticky header with mobile menu and theme toggle -->
         <div class="container">
             <div class="header-inner">
                 <a href="index.html#hero" class="logo" aria-label="VTEC Home">
@@ -64,6 +65,7 @@
     </header>
 
     <main>
+        <!-- Section: Hero - Workshop catalog value proposition -->
         <section class="hero" id="hero">
             <div class="container">
                 <div class="hero-content">
@@ -88,6 +90,7 @@
             </div>
         </section>
 
+        <!-- Section: Benefits - Practical advantages of VTEC technical training -->
         <section class="section benefits" id="benefits">
             <div class="container">
                 <div class="section-header centered">
@@ -119,6 +122,7 @@
             </div>
         </section>
 
+        <!-- Section: Workshop Catalog - List of available technical training programs -->
         <section class="section workshop-catalog alternate-bg" id="workshop-catalog">
             <div class="container">
                 <div class="section-header centered">
@@ -126,6 +130,7 @@
                     <h2 class="section-title">Workshop Catalog</h2>
                 </div>
                 <div class="workshop-grid">
+                    <!-- Workshop Card: Introduction to Industrial Robotics -->
                     <div class="workshop-card">
                         <div class="workshop-header">
                             <span class="workshop-duration">2-Day Workshop</span>
@@ -136,9 +141,11 @@
                         <div class="workshop-meta">
                             <p><strong>Target Audience:</strong> Engineers, technicians, and technical managers new to robotics</p>
                         </div>
+                        <!-- Action: Pre-selects this workshop in the registration form and scrolls to it -->
                         <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Introduction to Industrial Robotics')">Register Interest</button>
                     </div>
                     
+                    <!-- Workshop Card: AI for Real-World Applications -->
                     <div class="workshop-card">
                         <div class="workshop-header">
                             <span class="workshop-duration">3-Day Workshop</span>
@@ -152,6 +159,7 @@
                         <button class="btn btn-primary btn-sm" onclick="scrollToRegister('AI for Real-World Applications')">Register Interest</button>
                     </div>
                     
+                    <!-- Workshop Card: Startup Technical Feasibility -->
                     <div class="workshop-card">
                         <div class="workshop-header">
                             <span class="workshop-duration">1-Day Workshop</span>
@@ -165,6 +173,7 @@
                         <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Startup Technical Feasibility')">Register Interest</button>
                     </div>
                     
+                    <!-- Workshop Card: Automation & Process Optimization -->
                     <div class="workshop-card">
                         <div class="workshop-header">
                             <span class="workshop-duration">2-Day Workshop</span>
@@ -181,6 +190,7 @@
             </div>
         </section>
 
+        <!-- Section: Registration - Workshop interest registration form -->
         <section class="section cta-section" id="register">
             <div class="container">
                 <div class="cta-card">
@@ -193,29 +203,35 @@
                         </div>
                     </div>
                     <div class="cta-form-wrapper">
+                        <!-- Form configuration: Submission is intercepted by script.js and sent to Google Apps Script -->
                         <form id="workshop-form">
                             <p class="form-title">Workshop Registration</p>
                             <div class="form-row">
                                 <div class="form-group">
+                                    <!-- Field: Full Name - Required for registration -->
                                     <label for="workshop-name">Full Name <span class="required">*</span></label>
                                     <input type="text" id="workshop-name" name="name" required placeholder="e.g., Ahmad Hassan">
                                 </div>
                                 <div class="form-group">
+                                    <!-- Field: Email - Required for follow-up and confirmation -->
                                     <label for="workshop-email">Email <span class="required">*</span></label>
                                     <input type="email" id="workshop-email" name="email" required placeholder="e.g., ahmad@example.com">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
+                                    <!-- Field: Phone - Optional secondary contact method -->
                                     <label for="workshop-phone">Phone</label>
                                     <input type="tel" id="workshop-phone" name="phone" placeholder="e.g., +962 7X XXX XXXX">
                                 </div>
                                 <div class="form-group">
+                                    <!-- Field: Organization - Helps tailor the workshop context -->
                                     <label for="workshop-organization">Organization/Company</label>
                                     <input type="text" id="workshop-organization" name="organization" placeholder="e.g., ABC Manufacturing">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <!-- Field: Workshop Interest - Pre-selected via catalog buttons or manual selection -->
                                 <label for="workshop-interest">Workshop Interest <span class="required">*</span></label>
                                 <select id="workshop-interest" name="workshopInterest" required>
                                     <option value="" disabled selected>Select a workshop</option>
@@ -228,15 +244,18 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
+                                    <!-- Field: Preferred Timing - Helps in scheduling upcoming cohorts -->
                                     <label for="workshop-timing">Preferred Date/Timeframe</label>
                                     <input type="text" id="workshop-timing" name="preferredTiming" placeholder="e.g., Q1 2026 or Flexible">
                                 </div>
                                 <div class="form-group">
+                                    <!-- Field: Participants - For group or corporate registration inquiries -->
                                     <label for="workshop-participants">Number of Participants</label>
                                     <input type="number" id="workshop-participants" name="participants" min="1" placeholder="e.g., 5">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <!-- Field: Message - Additional requirements or questions -->
                                 <label for="workshop-message">Message/Specific Requirements</label>
                                 <textarea id="workshop-message" name="message" rows="3" placeholder="Any specific requirements or questions?"></textarea>
                             </div>
@@ -284,6 +303,10 @@
     </footer>
 
     <script>
+        /**
+         * Handles workshop selection and smooth scrolling to the registration form
+         * @param {string} workshopName - The name of the workshop to pre-select
+         */
         function scrollToRegister(workshopName) {
             const select = document.getElementById('workshop-interest');
             if (select && workshopName) {

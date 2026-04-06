@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------
+    // Mobile Navigation Toggle
+    // Toggles 'active' class on nav menu and manages body scroll lock
+    // -------------------------------------------------------
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     if (mobileNavToggle && navMenu) {
@@ -6,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
             const isExpanded = navMenu.classList.contains('active');
             mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+            
+            // Prevent background scrolling when mobile menu is open
             if (isExpanded) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -13,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Close mobile menu when a navigation link is clicked
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -23,24 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // -------------------------------------------------------
+    // Header Scroll Behavior
+    // Hides header on scroll down, shows on scroll up
+    // -------------------------------------------------------
     let lastScrollTop = 0;
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop > lastScrollTop) {
+            // Scrolling down
             header.classList.add('hide');
         } else {
+            // Scrolling up
             header.classList.remove('hide');
         }
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
+
+    // -------------------------------------------------------
+    // Theme Toggle (Dark/Light Mode)
+    // Persists user preference using localStorage
+    // -------------------------------------------------------
     const themeToggle = document.getElementById('theme-toggle');
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     let currentTheme = localStorage.getItem('theme');
+    
+    // Default to system preference if no stored theme
     if (!currentTheme) {
         currentTheme = userPrefersDark ? 'dark' : 'light';
     }
+    
     document.documentElement.setAttribute('data-theme', currentTheme);
+    
     themeToggle.addEventListener('click', () => {
         let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', newTheme);
@@ -48,9 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------
-    // Contact form -> Google Sheets via Apps Script Web App
+    // Form Submission Handlers
+    // Integrates with Google Apps Script Web App for data persistence
     // -------------------------------------------------------
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyQx0BEll1ANb0y5q4h7MmMRoJWOqkLCjImOSinWhWIgkPUTwJ3JlVSAIAWnz6qJwS/exec';
+
+    /**
+     * Contact Form Handler (index.html)
+     * Uses 'no-cors' mode as it doesn't require a response body
+     */
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
@@ -58,10 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const formStatus = document.getElementById('form-status');
             formStatus.textContent = 'Sending...';
             formStatus.style.color = '';
+            
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             const payload = JSON.stringify({ name, email, message });
+            
             fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -81,9 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // -------------------------------------------------------
-    // Partner form -> Google Sheets via Apps Script Web App
-    // -------------------------------------------------------
+    /**
+     * Partner Inquiry Form Handler (partner.html)
+     * Expects a JSON response from the Apps Script
+     */
     const partnerForm = document.getElementById('partner-form');
     if (partnerForm) {
         partnerForm.addEventListener('submit', function (e) {
@@ -125,9 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // -------------------------------------------------------
-    // Workshop form -> Google Sheets via Apps Script Web App
-    // -------------------------------------------------------
+    /**
+     * Workshop Registration Form Handler (workshops.html)
+     * Expects a JSON response from the Apps Script
+     */
     const workshopForm = document.getElementById('workshop-form');
     if (workshopForm) {
         workshopForm.addEventListener('submit', function (e) {

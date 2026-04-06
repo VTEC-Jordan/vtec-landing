@@ -1,10 +1,8 @@
-/* 
- * VTEC Landing Page Styles
- * Design System: Editorial, Clean, High-Signal
- */
-
+/* ========================================
+   SECTION: CSS CUSTOM PROPERTIES (Design Tokens)
+   ======================================== */
 :root {
-    /* Colors - Light Mode */
+    /* Colors - Light Mode: Neutral palette with industrial teal accent */
     --bg: #FDFCFB; /* Warm off-white */
     --bg-alt: #F4F2EF; /* Slightly darker neutral */
     --text: #1A1A1A; /* Charcoal */
@@ -15,25 +13,27 @@
     --card-bg: #FFFFFF;
     --header-bg: rgba(253, 252, 251, 0.9);
     
-    /* Spacing */
+    /* Spacing: Consistent scale for layout and components */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
     --space-md: 2rem;
     --space-lg: 4rem;
     --space-xl: 8rem;
     
-    /* Typography */
+    /* Typography: Inter for readability, Roboto Mono for technical accents */
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: 'Roboto Mono', monospace;
     
-    /* Layout */
+    /* Layout: Standardized dimensions and effects */
     --container-width: 1200px;
     --header-height: 80px;
     --radius: 2px; /* Sharp, professional look */
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Mode Overrides */
+/* ========================================
+   SECTION: DARK MODE OVERRIDES
+   ======================================== */
 [data-theme="dark"] {
     --bg: #121212;
     --bg-alt: #1E1E1E;
@@ -46,7 +46,9 @@
     --header-bg: rgba(18, 18, 18, 0.9);
 }
 
-/* Reset & Base */
+/* ========================================
+   SECTION: RESET & BASE STYLES
+   ======================================== */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -88,7 +90,9 @@ img {
     display: block;
 }
 
-/* Components */
+/* ========================================
+   SECTION: COMPONENT STYLES
+   ======================================== */
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -138,7 +142,9 @@ img {
     width: 100%;
 }
 
-/* Header */
+/* ========================================
+   SECTION: HEADER & NAVIGATION
+   ======================================== */
 .header {
     position: fixed;
     top: 0;
@@ -154,6 +160,7 @@ img {
     transition: transform 0.3s ease;
 }
 
+/* Header hide/show on scroll logic handled via JS */
 .header.hide {
     transform: translateY(-100%);
 }
@@ -193,7 +200,7 @@ img {
     gap: var(--space-sm);
 }
 
-/* Theme Toggle */
+/* Theme Toggle: Switches between light and dark modes */
 .theme-toggle {
     background: none;
     border: none;
@@ -210,7 +217,7 @@ img {
 [data-theme="dark"] .sun-icon { display: block; }
 [data-theme="dark"] .moon-icon { display: none; }
 
-/* Mobile Nav Toggle */
+/* Mobile Nav Toggle: Hamburger menu for small screens */
 .mobile-nav-toggle {
     display: none;
     flex-direction: column;
@@ -228,7 +235,9 @@ img {
     transition: var(--transition);
 }
 
-/* Hero */
+/* ========================================
+   SECTION: HERO & CREDIBILITY STRIP
+   ======================================== */
 .hero {
     padding-top: calc(var(--header-height) + var(--space-xl));
     padding-bottom: var(--space-xl);
@@ -264,7 +273,7 @@ img {
     justify-content: center;
 }
 
-/* Credibility Strip */
+/* Credibility Strip: Horizontal list of core expertise areas */
 .credibility-strip {
     margin-top: var(--space-xl);
     border-top: 1px solid var(--border);
@@ -288,7 +297,9 @@ img {
     color: var(--text-muted);
 }
 
-/* Sections */
+/* ========================================
+   SECTION: GENERAL PAGE SECTIONS
+   ======================================== */
 .section {
     padding: var(--space-xl) 0;
 }
@@ -332,7 +343,7 @@ img {
     color: var(--text-muted);
 }
 
-/* Grid Layout (About/Workshops) */
+/* Grid Layout: Used for About and Ecosystem sections */
 .grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -359,7 +370,7 @@ img {
     color: var(--accent);
 }
 
-/* Services Grid */
+/* Services Grid: Responsive grid for core pillars and benefits */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -395,7 +406,7 @@ img {
     color: var(--text-muted);
 }
 
-/* Asymmetric Grid (Why VTEC) */
+/* Asymmetric Grid: Editorial-style grid for 'Why VTEC' section */
 .asymmetric-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -418,7 +429,7 @@ img {
     margin-bottom: var(--space-sm);
 }
 
-/* Logo Strip */
+/* Logo Strip: Placeholder for partner and client logos */
 .logo-strip-placeholder {
     display: flex;
     justify-content: center;
@@ -435,7 +446,9 @@ img {
     border: 1px dashed var(--border);
 }
 
-/* CTA Section */
+/* ========================================
+   SECTION: FORMS & INPUTS
+   ======================================== */
 .cta-card {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -516,7 +529,9 @@ img {
     text-align: center;
 }
 
-/* Footer */
+/* ========================================
+   SECTION: FOOTER
+   ======================================== */
 .footer {
     padding: var(--space-lg) 0;
     border-top: 1px solid var(--border);
@@ -574,7 +589,11 @@ img {
     color: var(--text-muted);
 }
 
-/* Partner Form Specific Styles */
+/* ========================================
+   SECTION: PAGE-SPECIFIC STYLES
+   ======================================== */
+
+/* Partner Page Specific Styles */
 .partner-form-wrapper {
     max-width: 700px;
     margin: 0 auto;
@@ -708,7 +727,9 @@ img {
     background-color: var(--card-bg);
 }
 
-/* Responsive */
+/* ========================================
+   SECTION: RESPONSIVE BREAKPOINTS
+   ======================================== */
 @media (max-width: 992px) {
     .grid-layout, .cta-card {
         grid-template-columns: 1fr;
@@ -764,7 +785,7 @@ img {
     }
 }
 
-/* Mobile Nav Active State */
+/* Mobile Nav Active State: Styles for the mobile menu when toggled */
 .nav.active {
     display: block;
     position: fixed;
