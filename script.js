@@ -75,11 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form Submission Handlers
     // Integrates with Google Apps Script Web App for data persistence
     // -------------------------------------------------------
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyQx0BEll1ANb0y5q4h7MmMRoJWOqkLCjImOSinWhWIgkPUTwJ3JlVSAIAWnz6qJwS/exec';
+    const CONTACT_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbxyQx0BEll1ANb0y5q4h7MmMRoJWOqkLCjImOSinWhWIgkPUTwJ3JlVSAIAWnz6qJwS/exec';
+    const WORKSHOP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRgBYh-cQKFqSiyp2l9BUxB5HSMnOivuVb-_KoKgSs37p2rHic4pWuqcH8L0yePQbD/exec';
+    const PARTNER_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbzOjRzvJwkH19gIHoc9BmAtarj8akd21C7OOk0rMErWif1ULISMoi4GEHEbNjRTw4DV/exec';
 
     /**
      * Contact Form Handler (index.html)
-     * Uses 'no-cors' mode as it doesn't require a response body
+     * Uses CONTACT_SCRIPT_URL with 'no-cors' mode as it doesn't require a response body
      */
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -88,13 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const formStatus = document.getElementById('form-status');
             formStatus.textContent = 'Sending...';
             formStatus.style.color = '';
-            
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             const payload = JSON.stringify({ name, email, message });
-            
-            fetch(APPS_SCRIPT_URL, {
+
+            fetch(CONTACT_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -104,18 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 formStatus.textContent = "Message received! We'll be in touch soon.";
                 formStatus.style.color = 'var(--color-success, green)';
                 contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
             })
             .catch(err => {
                 console.error('Form submission error:', err);
                 formStatus.textContent = 'Something went wrong. Please email us directly.';
                 formStatus.style.color = 'var(--color-error, red)';
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
             });
         });
     }
 
     /**
      * Partner Inquiry Form Handler (partner.html)
-     * Expects a JSON response from the Apps Script
+     * Uses PARTNER_SCRIPT_URL and expects a JSON response from the Apps Script
      */
     const partnerForm = document.getElementById('partner-form');
     if (partnerForm) {
@@ -125,17 +136,21 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.textContent = 'Sending...';
             formStatus.style.color = '';
 
+            const submitBtn = partnerForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
             const companyName     = document.getElementById('company-name').value.trim();
             const contactName     = document.getElementById('contact-name').value.trim();
             const email           = document.getElementById('email').value.trim();
             const phone           = document.getElementById('phone').value.trim();
             const partnershipType = document.getElementById('partnership-type').value;
             const message         = document.getElementById('message').value.trim();
-            const inquiryType     = 'partner';
 
-            const payload = JSON.stringify({ companyName, contactName, email, phone, partnershipType, message, inquiryType });
+            const payload = JSON.stringify({ companyName, contactName, email, phone, partnershipType, message });
 
-            fetch(APPS_SCRIPT_URL, {
+            fetch(PARTNER_SCRIPT_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: payload
@@ -146,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.textContent = 'Inquiry received! We\'ll be in touch within 2 business days.';
                     formStatus.style.color = 'var(--color-success, green)';
                     partnerForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
                 } else {
                     throw new Error(data.error || 'Unknown error');
                 }
@@ -154,13 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Partner form submission error:', err);
                 formStatus.textContent = 'Something went wrong. Please email us directly at hello@vtec.example';
                 formStatus.style.color = 'var(--color-error, red)';
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
             });
         });
     }
 
     /**
      * Workshop Registration Form Handler (workshops.html)
-     * Expects a JSON response from the Apps Script
+     * Uses WORKSHOP_SCRIPT_URL and expects a JSON response from the Apps Script
      */
     const workshopForm = document.getElementById('workshop-form');
     if (workshopForm) {
@@ -170,6 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.textContent = 'Sending...';
             formStatus.style.color = '';
 
+            const submitBtn = workshopForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
             const name              = document.getElementById('workshop-name').value.trim();
             const email             = document.getElementById('workshop-email').value.trim();
             const phone             = document.getElementById('workshop-phone').value.trim();
@@ -178,11 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const preferredTiming   = document.getElementById('workshop-timing').value.trim();
             const participants      = document.getElementById('workshop-participants').value.trim();
             const message           = document.getElementById('workshop-message').value.trim();
-            const inquiryType       = 'workshop';
 
-            const payload = JSON.stringify({ name, email, phone, organization, workshopInterest, preferredTiming, participants, message, inquiryType });
+            const payload = JSON.stringify({ name, email, phone, organization, workshopInterest, preferredTiming, participants, message });
 
-            fetch(APPS_SCRIPT_URL, {
+            fetch(WORKSHOP_SCRIPT_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: payload
@@ -193,6 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.textContent = 'Registration received! We\'ll be in touch with workshop details soon.';
                     formStatus.style.color = 'var(--color-success, green)';
                     workshopForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
                 } else {
                     throw new Error(data.error || 'Unknown error');
                 }
@@ -201,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Workshop form submission error:', err);
                 formStatus.textContent = 'Something went wrong. Please email us directly at hello@vtec.example';
                 formStatus.style.color = 'var(--color-error, red)';
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
             });
         });
     }
