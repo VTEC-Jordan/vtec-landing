@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- WCAG 2.4.7: Added visible focus indicators for keyboard navigation
+- WCAG 3.3.1: Added aria-live regions for form error/success announcements
+- WCAG 3.3.2: Added aria-required attributes to required form fields
+- WCAG 4.1.2: Added aria-pressed state to theme toggle button
+- WCAG 2.4.4: Added aria-label context to footer links
+- Improved form error messages with actionable suggestions (WCAG 3.3.3)
+
 ### Added
 - robots.txt for search engine crawl instructions
 - sitemap.xml listing all site pages
