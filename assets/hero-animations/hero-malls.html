@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malls Hero Animation</title>
+    <style>
+        :root {
+            --bg: #FDFCFB;
+            --bg-alt: #F4F2EF;
+            --text: #1A1A1A;
+            --text-muted: #555555;
+            --accent: #006D77;
+            --accent-light: #83C5BE;
+            --card-bg: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --bg-alt: #1E1E1E;
+            --text: #F0F0F0;
+            --text-muted: #AAAAAA;
+            --accent: #83C5BE;
+            --accent-light: #006D77;
+            --card-bg: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+        }
+
+        .closed-shop {
+            animation: dimToBright 10s infinite ease-in-out;
+        }
+
+        .shop-sign {
+            animation: signLightUp 10s infinite ease-in-out;
+        }
+
+        .digital-screen {
+            animation: screenActivate 10s infinite ease-in-out;
+        }
+
+        .abstract-person {
+            animation: personFlow 10s infinite ease-in-out;
+        }
+
+        .traffic-line {
+            animation: trafficFlow 10s infinite ease-in-out;
+        }
+
+        .heatmap-blob {
+            animation: heatmapPulse 10s infinite ease-in-out;
+        }
+
+        .metric-overlay {
+            animation: metricsAppear 10s infinite ease-in-out;
+        }
+
+        .corridor-light {
+            animation: corridorBrighten 10s infinite ease-in-out;
+        }
+
+        @keyframes dimToBright {
+            0%, 30% {
+                fill-opacity: 0.1;
+                stroke-opacity: 0.2;
+            }
+            50% {
+                fill-opacity: 0.3;
+                stroke-opacity: 0.4;
+            }
+            80%, 100% {
+                fill-opacity: 0.6;
+                stroke-opacity: 0.7;
+            }
+        }
+
+        @keyframes signLightUp {
+            0%, 40% {
+                opacity: 0;
+                filter: drop-shadow(0 0 0 transparent);
+            }
+            60% {
+                opacity: 0.5;
+                filter: drop-shadow(0 0 5px var(--accent-light));
+            }
+            80%, 100% {
+                opacity: 1;
+                filter: drop-shadow(0 0 10px var(--accent));
+            }
+        }
+
+        @keyframes screenActivate {
+            0%, 45% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            65% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            85%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes personFlow {
+            0%, 50% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            65% {
+                opacity: 0.4;
+                transform: translateX(10px);
+            }
+            85%, 100% {
+                opacity: 0.7;
+                transform: translateX(50px);
+            }
+        }
+
+        @keyframes trafficFlow {
+            0%, 55% {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 50;
+                opacity: 0;
+            }
+            70% {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 25;
+                opacity: 0.4;
+            }
+            100% {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 0;
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes heatmapPulse {
+            0%, 60% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            75% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes metricsAppear {
+            0%, 70% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            85% {
+                opacity: 0.6;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes corridorBrighten {
+            0%, 35% {
+                opacity: 0.3;
+            }
+            55% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="corridorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--bg);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:var(--bg-alt);stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="heatmapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--accent-light);stop-opacity:0.6" />
+                <stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.3" />
+            </linearGradient>
+            <filter id="softGlow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+            <filter id="heatmapBlur">
+                <feGaussianBlur stdDeviation="8" result="blur"/>
+            </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="var(--bg)"/>
+
+        <!-- Mall corridor structure -->
+        <g class="corridor-light">
+            <!-- Floor perspective lines -->
+            <line x1="200" y1="400" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+            <line x1="600" y1="400" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+            <line x1="300" y1="400" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.1"/>
+            <line x1="500" y1="400" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.1"/>
+            
+            <!-- Ceiling lines -->
+            <line x1="200" y1="0" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.15"/>
+            <line x1="600" y1="0" x2="400" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.15"/>
+        </g>
+
+        <!-- Shopfronts (left side) -->
+        <g class="closed-shop" transform="translate(250, 250)">
+            <polygon points="-60,-50 60,-50 50,80 -50,80" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="2"/>
+            <!-- Shop window -->
+            <rect x="-45" y="-30" width="90" height="60" fill="none" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3"/>
+            <line x1="0" y1="-30" x2="0" y2="30" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+        </g>
+
+        <g class="closed-shop" transform="translate(180, 280)" style="animation-delay: 0.3s">
+            <polygon points="-50,-40 50,-40 40,60 -40,60" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="2"/>
+            <rect x="-35" y="-25" width="70" height="45" fill="none" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3"/>
+        </g>
+
+        <!-- Shopfronts (right side) -->
+        <g class="closed-shop" transform="translate(550, 250)">
+            <polygon points="-60,-50 60,-50 50,80 -50,80" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="2"/>
+            <rect x="-45" y="-30" width="90" height="60" fill="none" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3"/>
+            <line x1="0" y1="-30" x2="0" y2="30" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+        </g>
+
+        <g class="closed-shop" transform="translate(620, 280)" style="animation-delay: 0.3s">
+            <polygon points="-50,-40 50,-40 40,60 -40,60" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="2"/>
+            <rect x="-35" y="-25" width="70" height="45" fill="none" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3"/>
+        </g>
+
+        <!-- Shop signs lighting up -->
+        <g class="shop-sign" transform="translate(250, 185)">
+            <rect x="-40" y="-12" width="80" height="24" rx="2" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-35" y="-8" width="70" height="6" rx="1" fill="var(--bg)" fill-opacity="0.6"/>
+        </g>
+
+        <g class="shop-sign" transform="translate(180, 230)" style="animation-delay: 0.4s">
+            <rect x="-30" y="-10" width="60" height="20" rx="2" fill="var(--accent)" fill-opacity="0.3"/>
+            <circle cx="0" cy="0" r="5" fill="var(--bg)" fill-opacity="0.5"/>
+        </g>
+
+        <g class="shop-sign" transform="translate(550, 185)" style="animation-delay: 0.2s">
+            <rect x="-40" y="-12" width="80" height="24" rx="2" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-30" y="-6" width="60" height="4" rx="1" fill="var(--bg)" fill-opacity="0.6"/>
+        </g>
+
+        <g class="shop-sign" transform="translate(620, 230)" style="animation-delay: 0.5s">
+            <rect x="-30" y="-10" width="60" height="20" rx="2" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-20" y="-4" width="40" height="8" rx="2" fill="var(--bg)" fill-opacity="0.5"/>
+        </g>
+
+        <!-- Digital screens turning on -->
+        <g class="digital-screen" transform="translate(320, 220)">
+            <rect x="-20" y="-30" width="40" height="60" rx="2" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.4" filter="url(#softGlow)"/>
+            <rect x="-15" y="-25" width="30" height="20" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-15" y="0" width="30" height="4" fill="var(--accent-light)" fill-opacity="0.4"/>
+            <rect x="-15" y="8" width="20" height="4" fill="var(--accent-light)" fill-opacity="0.3"/>
+        </g>
+
+        <g class="digital-screen" transform="translate(480, 220)" style="animation-delay: 0.3s">
+            <rect x="-20" y="-30" width="40" height="60" rx="2" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.4" filter="url(#softGlow)"/>
+            <circle cx="0" cy="-10" r="10" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-15" y="5" width="30" height="15" fill="var(--accent-light)" fill-opacity="0.2"/>
+        </g>
+
+        <!-- Abstract person silhouettes flowing through -->
+        <g class="abstract-person" transform="translate(350, 320)">
+            <ellipse cx="0" cy="-35" rx="8" ry="10" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-6" y="-20" width="12" height="25" rx="3" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-8" y="0" width="5" height="20" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+            <rect x="3" y="0" width="5" height="20" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+        </g>
+
+        <g class="abstract-person" transform="translate(420, 340)" style="animation-delay: 0.5s">
+            <ellipse cx="0" cy="-30" rx="7" ry="9" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-5" y="-18" width="10" height="22" rx="3" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-7" y="0" width="4" height="18" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+            <rect x="3" y="0" width="4" height="18" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+        </g>
+
+        <g class="abstract-person" transform="translate(480, 310)" style="animation-delay: 1s">
+            <ellipse cx="0" cy="-32" rx="7" ry="9" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-5" y="-19" width="10" height="23" rx="3" fill="var(--text-muted)" fill-opacity="0.4"/>
+            <rect x="-6" y="0" width="4" height="19" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+            <rect x="2" y="0" width="4" height="19" rx="2" fill="var(--text-muted)" fill-opacity="0.3"/>
+        </g>
+
+        <g class="abstract-person" transform="translate(400, 360)" style="animation-delay: 1.5s">
+            <ellipse cx="0" cy="-28" rx="6" ry="8" fill="var(--text-muted)" fill-opacity="0.35"/>
+            <rect x="-4" y="-16" width="8" height="20" rx="2" fill="var(--text-muted)" fill-opacity="0.35"/>
+            <rect x="-5" y="0" width="3" height="16" rx="1" fill="var(--text-muted)" fill-opacity="0.25"/>
+            <rect x="2" y="0" width="3" height="16" rx="1" fill="var(--text-muted)" fill-opacity="0.25"/>
+        </g>
+
+        <!-- Foot traffic flow lines -->
+        <g class="traffic-line" fill="none" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.3" stroke-linecap="round">
+            <path d="M300,380 Q400,320 500,360"/>
+            <path d="M350,390 Q420,330 480,370" style="animation-delay: 0.3s"/>
+            <path d="M320,370 Q400,300 450,340" style="animation-delay: 0.6s"/>
+        </g>
+
+        <!-- Heatmap blobs (faint translucent) -->
+        <g class="heatmap-blob" filter="url(#heatmapBlur)">
+            <ellipse cx="380" cy="300" rx="60" ry="40" fill="url(#heatmapGradient)" opacity="0.4"/>
+        </g>
+        <g class="heatmap-blob" filter="url(#heatmapBlur)" style="animation-delay: 0.5s">
+            <ellipse cx="450" cy="340" rx="50" ry="35" fill="url(#heatmapGradient)" opacity="0.3"/>
+        </g>
+        <g class="heatmap-blob" filter="url(#heatmapBlur)" style="animation-delay: 0.8s">
+            <ellipse cx="420" cy="280" rx="40" ry="30" fill="url(#heatmapGradient)" opacity="0.25"/>
+        </g>
+
+        <!-- Metrics overlays -->
+        <g class="metric-overlay" transform="translate(680, 100)">
+            <rect x="-70" y="-35" width="140" height="70" rx="6" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.2"/>
+            <!-- Foot traffic indicator -->
+            <rect x="-55" y="-20" width="40" height="8" rx="2" fill="var(--accent)" fill-opacity="0.3"/>
+            <rect x="-10" y="-20" width="50" height="8" rx="2" fill="var(--bg-alt)"/>
+            <rect x="-10" y="-20" width="35" height="8" rx="2" fill="var(--accent-light)" fill-opacity="0.5"/>
+            <!-- Another metric -->
+            <rect x="-55" y="-5" width="40" height="8" rx="2" fill="var(--accent)" fill-opacity="0.2"/>
+            <rect x="-10" y="-5" width="50" height="8" rx="2" fill="var(--bg-alt)"/>
+            <rect x="-10" y="-5" width="45" height="8" rx="2" fill="var(--accent-light)" fill-opacity="0.5"/>
+            <!-- Third metric -->
+            <rect x="-55" y="10" width="40" height="8" rx="2" fill="var(--accent)" fill-opacity="0.2"/>
+            <rect x="-10" y="10" width="50" height="8" rx="2" fill="var(--bg-alt)"/>
+            <rect x="-10" y="10" width="25" height="8" rx="2" fill="var(--accent-light)" fill-opacity="0.5"/>
+        </g>
+
+        <g class="metric-overlay" transform="translate(120, 100)" style="animation-delay: 0.3s">
+            <rect x="-60" y="-30" width="120" height="60" rx="6" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.2"/>
+            <!-- Circular indicator -->
+            <circle cx="-35" cy="0" r="15" fill="none" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.3"/>
+            <path d="M-35,-15 A15,15 0 0,1 -20,0" fill="none" stroke="var(--accent-light)" stroke-width="2"/>
+            <!-- Bar indicators -->
+            <rect x="-10" y="-15" width="50" height="6" rx="3" fill="var(--bg-alt)"/>
+            <rect x="-10" y="-15" width="35" height="6" rx="3" fill="var(--accent)" fill-opacity="0.4"/>
+            <rect x="-10" y="5" width="50" height="6" rx="3" fill="var(--bg-alt)"/>
+            <rect x="-10" y="5" width="40" height="6" rx="3" fill="var(--accent)" fill-opacity="0.4"/>
+        </g>
+
+        <!-- Ambient lighting effects -->
+        <g fill="var(--accent-light)" fill-opacity="0.1">
+            <circle cx="250" cy="100" r="80">
+                <animate attributeName="fill-opacity" values="0.05;0.15;0.05" dur="5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="550" cy="100" r="80">
+                <animate attributeName="fill-opacity" values="0.05;0.15;0.05" dur="5s" begin="2s" repeatCount="indefinite"/>
+            </circle>
+        </g>
+
+        <!-- Floor reflection lines -->
+        <g stroke="var(--accent)" stroke-width="0.5" stroke-opacity="0.05">
+            <line x1="300" y1="350" x2="350" y2="400">
+                <animate attributeName="stroke-opacity" values="0.05;0.15;0.05" dur="4s" repeatCount="indefinite"/>
+            </line>
+            <line x1="400" y1="350" x2="450" y2="400">
+                <animate attributeName="stroke-opacity" values="0.05;0.15;0.05" dur="4s" begin="1s" repeatCount="indefinite"/>
+            </line>
+            <line x1="500" y1="350" x2="550" y2="400">
+                <animate attributeName="stroke-opacity" values="0.05;0.15;0.05" dur="4s" begin="2s" repeatCount="indefinite"/>
+            </line>
+        </g>
+    </svg>
+
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        window.addEventListener('message', (e) => {
+            if (e.data && typeof e.data === 'object' && e.data.theme) {
+                document.documentElement.setAttribute('data-theme', e.data.theme);
+            }
+        });
+    </script>
+</body>
+</html>

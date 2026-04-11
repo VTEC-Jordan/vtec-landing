@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Hero Animation</title>
+    <style>
+        :root {
+            --bg: #FDFCFB;
+            --bg-alt: #F4F2EF;
+            --text: #1A1A1A;
+            --text-muted: #555555;
+            --accent: #006D77;
+            --accent-light: #83C5BE;
+            --card-bg: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --bg-alt: #1E1E1E;
+            --text: #F0F0F0;
+            --text-muted: #AAAAAA;
+            --accent: #83C5BE;
+            --accent-light: #006D77;
+            --card-bg: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+        }
+
+        /* Box animations */
+        .chaotic-box {
+            animation: chaoticFloat 10s infinite ease-in-out;
+        }
+
+        .receipt {
+            animation: receiptPile 10s infinite ease-in-out;
+        }
+
+        .organized-box {
+            animation: organize 10s infinite ease-in-out;
+        }
+
+        .conveyor {
+            animation: conveyorMove 10s infinite linear;
+        }
+
+        .cart-icon {
+            animation: cartGlow 10s infinite ease-in-out;
+        }
+
+        .ui-counter {
+            animation: stabilizeUI 10s infinite ease-in-out;
+        }
+
+        .stock-indicator {
+            animation: stockStable 10s infinite ease-in-out;
+        }
+
+        .particle {
+            animation: particleFlow 10s infinite linear;
+        }
+
+        @keyframes chaoticFloat {
+            0%, 20% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            30% {
+                transform: translate(20px, -10px) rotate(15deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(50px, -20px) rotate(30deg);
+                opacity: 0.3;
+            }
+            60%, 100% {
+                transform: translate(80px, -30px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes receiptPile {
+            0%, 25% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            40% {
+                transform: translateY(-20px) scale(0.9);
+                opacity: 0.5;
+            }
+            60%, 100% {
+                transform: translateY(-50px) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+        @keyframes organize {
+            0%, 50% {
+                transform: translateX(-100px) scale(0.5);
+                opacity: 0;
+            }
+            60% {
+                transform: translateX(-20px) scale(0.8);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes conveyorMove {
+            0%, 60% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes cartGlow {
+            0%, 60% {
+                filter: drop-shadow(0 0 0 transparent);
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            75% {
+                filter: drop-shadow(0 0 20px var(--accent));
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                filter: drop-shadow(0 0 30px var(--accent-light));
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes stabilizeUI {
+            0%, 65% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            80% {
+                opacity: 0.6;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes stockStable {
+            0%, 70% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            85% {
+                opacity: 0.7;
+                transform: scaleX(0.7);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes particleFlow {
+            0%, 55% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            70% {
+                transform: translateX(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateX(100px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--bg-alt);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:var(--bg);stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:var(--accent-light);stop-opacity:0.6" />
+            </linearGradient>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <!-- Background grid -->
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.1"/>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Chaotic cardboard boxes (left side - initial state) -->
+        <g class="chaotic-box" transform="translate(150, 200)">
+            <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-opacity="0.4" transform="rotate(10)"/>
+            <rect x="-25" y="-25" width="50" height="50" fill="none" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3" transform="rotate(-5)"/>
+        </g>
+
+        <g class="chaotic-box" transform="translate(200, 180)" style="animation-delay: 0.5s">
+            <rect x="-25" y="-25" width="50" height="50" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-opacity="0.35" transform="rotate(-15)"/>
+            <line x1="-25" y1="0" x2="25" y2="0" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3" transform="rotate(-15)"/>
+        </g>
+
+        <g class="chaotic-box" transform="translate(120, 250)" style="animation-delay: 1s">
+            <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-opacity="0.3" transform="rotate(25)"/>
+        </g>
+
+        <!-- Paper receipts piling up -->
+        <g class="receipt" transform="translate(180, 300)">
+            <rect x="-15" y="-20" width="30" height="40" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.3" transform="rotate(5)"/>
+            <line x1="-10" y1="-10" x2="10" y2="-10" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.5" transform="rotate(5)"/>
+            <line x1="-10" y1="0" x2="8" y2="0" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.5" transform="rotate(5)"/>
+            <line x1="-10" y1="10" x2="5" y2="10" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.5" transform="rotate(5)"/>
+        </g>
+
+        <g class="receipt" transform="translate(210, 320)" style="animation-delay: 0.3s">
+            <rect x="-12" y="-18" width="24" height="36" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.25" transform="rotate(-8)"/>
+            <line x1="-8" y1="-8" x2="8" y2="-8" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.4" transform="rotate(-8)"/>
+            <line x1="-8" y1="2" x2="6" y2="2" stroke="var(--text-muted)" stroke-width="0.5" stroke-opacity="0.4" transform="rotate(-8)"/>
+        </g>
+
+        <g class="receipt" transform="translate(160, 340)" style="animation-delay: 0.6s">
+            <rect x="-14" y="-22" width="28" height="44" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2" transform="rotate(12)"/>
+        </g>
+
+        <!-- Conveyor belt (center) -->
+        <g transform="translate(400, 320)">
+            <rect x="-200" y="-10" width="400" height="20" fill="none" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.3" class="conveyor"/>
+            <line x1="-180" y1="0" x2="180" y2="0" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="10,10" class="conveyor">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
+            </line>
+            <!-- Conveyor rollers -->
+            <g stroke="var(--accent)" stroke-width="2" stroke-opacity="0.3">
+                <circle cx="-150" cy="0" r="5" fill="none"/>
+                <circle cx="-100" cy="0" r="5" fill="none"/>
+                <circle cx="-50" cy="0" r="5" fill="none"/>
+                <circle cx="0" cy="0" r="5" fill="none"/>
+                <circle cx="50" cy="0" r="5" fill="none"/>
+                <circle cx="100" cy="0" r="5" fill="none"/>
+                <circle cx="150" cy="0" r="5" fill="none"/>
+            </g>
+        </g>
+
+        <!-- Organized packages on conveyor -->
+        <g class="organized-box" transform="translate(250, 310)">
+            <rect x="-25" y="-25" width="50" height="50" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.6"/>
+            <rect x="-20" y="-20" width="40" height="15" fill="none" stroke="var(--accent-light)" stroke-width="1" stroke-opacity="0.5"/>
+            <line x1="-15" y1="-12" x2="15" y2="-12" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.4"/>
+        </g>
+
+        <g class="organized-box" transform="translate(320, 310)" style="animation-delay: 0.2s">
+            <rect x="-22" y="-22" width="44" height="44" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.6"/>
+            <circle cx="0" cy="-5" r="8" fill="none" stroke="var(--accent-light)" stroke-width="1" stroke-opacity="0.5"/>
+        </g>
+
+        <g class="organized-box" transform="translate(390, 310)" style="animation-delay: 0.4s">
+            <rect x="-28" y="-28" width="56" height="56" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="2" stroke-opacity="0.6"/>
+            <rect x="-22" y="-10" width="44" height="20" fill="none" stroke="var(--accent-light)" stroke-width="1" stroke-opacity="0.4"/>
+            <line x1="-15" y1="0" x2="15" y2="0" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.3"/>
+        </g>
+
+        <!-- Digital shopping cart icon (right side) -->
+        <g class="cart-icon" transform="translate(650, 250)">
+            <!-- Cart body -->
+            <path d="M-30,-10 L30,-10 L25,30 L-25,30 Z" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M-35,-25 L-30,-10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Cart handle -->
+            <path d="M-35,-25 L-45,-30" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Digital glow elements -->
+            <circle cx="-15" cy="40" r="5" fill="none" stroke="var(--accent-light)" stroke-width="2" stroke-opacity="0.6"/>
+            <circle cx="15" cy="40" r="5" fill="none" stroke="var(--accent-light)" stroke-width="2" stroke-opacity="0.6"/>
+            <!-- Data particles -->
+            <circle cx="-40" cy="-20" r="3" fill="var(--accent-light)" class="particle"/>
+            <circle cx="50" cy="0" r="2" fill="var(--accent-light)" class="particle" style="animation-delay: 0.5s"/>
+            <circle cx="45" cy="20" r="2.5" fill="var(--accent-light)" class="particle" style="animation-delay: 1s"/>
+            <circle cx="-45" cy="10" r="2" fill="var(--accent-light)" class="particle" style="animation-delay: 1.5s"/>
+        </g>
+
+        <!-- UI overlays - Order counters -->
+        <g class="ui-counter" transform="translate(650, 150)">
+            <rect x="-60" y="-30" width="120" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.3"/>
+            <rect x="-50" y="-20" width="30" height="20" fill="var(--accent)" fill-opacity="0.2"/>
+            <line x1="-10" y1="-15" x2="40" y2="-15" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="-10" y1="-5" x2="30" y2="-5" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <g class="ui-counter" transform="translate(520, 120)" style="animation-delay: 0.3s">
+            <rect x="-50" y="-25" width="100" height="35" rx="4" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="1" stroke-opacity="0.2"/>
+            <circle cx="-30" cy="-7" r="8" fill="var(--accent)" fill-opacity="0.3"/>
+            <line x1="-10" y1="-10" x2="35" y2="-10" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Stock level indicators -->
+        <g class="stock-indicator" transform="translate(680, 330)">
+            <rect x="-40" y="-8" width="80" height="16" rx="8" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+            <rect x="-38" y="-6" width="60" height="12" rx="6" fill="url(#accentGradient)" fill-opacity="0.7"/>
+        </g>
+
+        <g class="stock-indicator" transform="translate(680, 355)" style="animation-delay: 0.2s">
+            <rect x="-40" y="-8" width="80" height="16" rx="8" fill="var(--bg-alt)" stroke="var(--text-muted)" stroke-width="1" stroke-opacity="0.2"/>
+            <rect x="-38" y="-6" width="70" height="12" rx="6" fill="url(#accentGradient)" fill-opacity="0.7"/>
+        </g>
+
+        <!-- Connection lines (flow visualization) -->
+        <g stroke="var(--accent)" stroke-width="1" stroke-opacity="0.2" fill="none">
+            <path d="M250,260 Q400,220 550,230" stroke-dasharray="5,5">
+                <animate attributeName="stroke-dashoffset" from="10" to="0" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <path d="M320,260 Q450,240 580,240" stroke-dasharray="5,5">
+                <animate attributeName="stroke-dashoffset" from="10" to="0" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+            </path>
+        </g>
+    </svg>
+
+    <script>
+        // Detect dark mode from parent or system
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        // Listen for messages from parent for theme changes
+        window.addEventListener('message', (e) => {
+            if (e.data && typeof e.data === 'object' && e.data.theme) {
+                document.documentElement.setAttribute('data-theme', e.data.theme);
+            }
+        });
+    </script>
+</body>
+</html>
