@@ -54,47 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Theme Toggle (Dark/Light Mode)
     // Persists user preference using localStorage
     // -------------------------------------------------------
-	    const themeToggle = document.getElementById('theme-toggle');
-	    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-	    let currentTheme = localStorage.getItem('theme');
-	    const heroAnimationIframe = document.getElementById('hero-animation-iframe');
-
-	    const postHeroAnimationTheme = (theme) => {
-	        if (!heroAnimationIframe || !heroAnimationIframe.contentWindow) return;
-	        let targetOrigin = '*';
-	        try {
-	            targetOrigin = new URL(heroAnimationIframe.getAttribute('src') || '', window.location.href).origin;
-	        } catch (_) {
-	            targetOrigin = '*';
-	        }
-	        heroAnimationIframe.contentWindow.postMessage({ theme }, targetOrigin);
-	    };
-	    
-	    // Default to system preference if no stored theme
-	    if (!currentTheme) {
-	        currentTheme = userPrefersDark ? 'dark' : 'light';
-	    }
-	    
-	    document.documentElement.setAttribute('data-theme', currentTheme);
-	    postHeroAnimationTheme(currentTheme);
-	    if (heroAnimationIframe) {
-	        heroAnimationIframe.addEventListener('load', () => {
-	            postHeroAnimationTheme(document.documentElement.getAttribute('data-theme'));
-	        });
-	    }
-	    if (themeToggle) {
-	        themeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
-	    }
-	    
-	    if (themeToggle) {
-	        themeToggle.addEventListener('click', () => {
-	            let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-	            document.documentElement.setAttribute('data-theme', newTheme);
-	            localStorage.setItem('theme', newTheme);
-	            themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
-	            postHeroAnimationTheme(newTheme);
-	        });
-	    }
+    const themeToggle = document.getElementById('theme-toggle');
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let currentTheme = localStorage.getItem('theme');
+    
+    // Default to system preference if no stored theme
+    if (!currentTheme) {
+        currentTheme = userPrefersDark ? 'dark' : 'light';
+    }
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
+        });
+    }
 
     // -------------------------------------------------------
     // Form Submission Handlers
