@@ -122,62 +122,68 @@
                     <span class="section-label">Available Workshops</span>
                     <h2 class="section-title">Workshop Topics</h2>
                 </div>
-                <div class="workshop-grid">
-                    <!-- Workshop Card: Startup Technical Feasibility -->
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <span class="workshop-duration">1-Day Workshop</span>
-                            <span class="workshop-badge">Strategy</span>
+                <div class="workshop-slider-wrapper">
+                    <div class="workshop-slider" id="workshop-slider">
+                        <!-- Workshop Card: Startup Technical Feasibility -->
+                        <div class="workshop-card">
+                            <div class="workshop-header">
+                                <span class="workshop-duration">1-Day Workshop</span>
+                                <span class="workshop-badge">Strategy</span>
+                            </div>
+                            <h3 class="workshop-title">Startup Technical Feasibility</h3>
+                            <p class="workshop-desc">How to evaluate product ideas, reduce technical uncertainty, and build realistic delivery plans before wasting time and money. Ideal for founders and early teams.</p>
+                            <div class="workshop-meta">
+                                <p><strong>Target Audience:</strong> Founders, product leads, and early-stage teams</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Startup Technical Feasibility')">Register Interest</button>
                         </div>
-                        <h3 class="workshop-title">Startup Technical Feasibility</h3>
-                        <p class="workshop-desc">How to evaluate product ideas, reduce technical uncertainty, and build realistic delivery plans before wasting time and money. Ideal for founders and early teams.</p>
-                        <div class="workshop-meta">
-                            <p><strong>Target Audience:</strong> Founders, product leads, and early-stage teams</p>
+                        
+                        <!-- Workshop Card: MVP Planning and Delivery -->
+                        <div class="workshop-card">
+                            <div class="workshop-header">
+                                <span class="workshop-duration">2-Day Workshop</span>
+                                <span class="workshop-badge">Build</span>
+                            </div>
+                            <h3 class="workshop-title">MVP Planning and Delivery</h3>
+                            <p class="workshop-desc">How to scope an MVP properly, prioritize what matters, and make engineering decisions that support real users instead of fragile demos.</p>
+                            <div class="workshop-meta">
+                                <p><strong>Target Audience:</strong> Founders, product managers, and startup operators</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="scrollToRegister('MVP Planning and Delivery')">Register Interest</button>
                         </div>
-                        <!-- Action: Pre-selects this workshop in the registration form and scrolls to it -->
-                        <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Startup Technical Feasibility')">Register Interest</button>
+                        
+                        <!-- Workshop Card: Automation and Workflow Design -->
+                        <div class="workshop-card">
+                            <div class="workshop-header">
+                                <span class="workshop-duration">1-Day Workshop</span>
+                                <span class="workshop-badge">Operations</span>
+                            </div>
+                            <h3 class="workshop-title">Automation and Workflow Design</h3>
+                            <p class="workshop-desc">How to identify bottlenecks, reduce repetitive manual work, and design practical automations across teams, tools, and business processes.</p>
+                            <div class="workshop-meta">
+                                <p><strong>Target Audience:</strong> Operations teams, managers, and process owners</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Automation and Workflow Design')">Register Interest</button>
+                        </div>
+                        
+                        <!-- Workshop Card: AI Assistants for Websites and Support -->
+                        <div class="workshop-card">
+                            <div class="workshop-header">
+                                <span class="workshop-duration">1-Day Workshop</span>
+                                <span class="workshop-badge">AI</span>
+                            </div>
+                            <h3 class="workshop-title">AI Assistants for Websites and Support</h3>
+                            <p class="workshop-desc">How retrieval-based assistants work, where they help, how to ground them in real company content, and what makes them useful instead of gimmicky.</p>
+                            <div class="workshop-meta">
+                                <p><strong>Target Audience:</strong> Support teams, marketers, product teams, and business operators</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="scrollToRegister('AI Assistants for Websites and Support')">Register Interest</button>
+                        </div>
                     </div>
-                    
-                    <!-- Workshop Card: MVP Planning and Delivery -->
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <span class="workshop-duration">2-Day Workshop</span>
-                            <span class="workshop-badge">Build</span>
-                        </div>
-                        <h3 class="workshop-title">MVP Planning and Delivery</h3>
-                        <p class="workshop-desc">How to scope an MVP properly, prioritize what matters, and make engineering decisions that support real users instead of fragile demos.</p>
-                        <div class="workshop-meta">
-                            <p><strong>Target Audience:</strong> Founders, product managers, and startup operators</p>
-                        </div>
-                        <button class="btn btn-primary btn-sm" onclick="scrollToRegister('MVP Planning and Delivery')">Register Interest</button>
-                    </div>
-                    
-                    <!-- Workshop Card: Automation and Workflow Design -->
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <span class="workshop-duration">1-Day Workshop</span>
-                            <span class="workshop-badge">Operations</span>
-                        </div>
-                        <h3 class="workshop-title">Automation and Workflow Design</h3>
-                        <p class="workshop-desc">How to identify bottlenecks, reduce repetitive manual work, and design practical automations across teams, tools, and business processes.</p>
-                        <div class="workshop-meta">
-                            <p><strong>Target Audience:</strong> Operations teams, managers, and process owners</p>
-                        </div>
-                        <button class="btn btn-primary btn-sm" onclick="scrollToRegister('Automation and Workflow Design')">Register Interest</button>
-                    </div>
-                    
-                    <!-- Workshop Card: AI Assistants for Websites and Support -->
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <span class="workshop-duration">1-Day Workshop</span>
-                            <span class="workshop-badge">AI</span>
-                        </div>
-                        <h3 class="workshop-title">AI Assistants for Websites and Support</h3>
-                        <p class="workshop-desc">How retrieval-based assistants work, where they help, how to ground them in real company content, and what makes them useful instead of gimmicky.</p>
-                        <div class="workshop-meta">
-                            <p><strong>Target Audience:</strong> Support teams, marketers, product teams, and business operators</p>
-                        </div>
-                        <button class="btn btn-primary btn-sm" onclick="scrollToRegister('AI Assistants for Websites and Support')">Register Interest</button>
+                    <div class="slider-controls">
+                        <button class="slider-btn" id="workshop-slider-prev" aria-label="Previous workshops">&#8592;</button>
+                        <div class="slider-dots" id="workshop-slider-dots"></div>
+                        <button class="slider-btn" id="workshop-slider-next" aria-label="Next workshops">&#8594;</button>
                     </div>
                 </div>
             </div>
@@ -192,7 +198,7 @@
                         <p class="cta-text">Tell us what kind of workshop you need, who it is for, and what problem you want to solve. We'll get back to you with the right format, scope, and next steps.</p>
                         <div class="contact-methods">
                             <a href="mailto:hello@vtec.example" class="contact-link">hello@vtec.example</a>
-                            <a href="https://linkedin.com/company/vtec-placeholder" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/company/vtec-placeholder</a>
+                            <a href="https://www.linkedin.com/company/venture-tech-consultancy/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/venture-tech-consultancy</a>
                         </div>
                     </div>
                     <div class="cta-form-wrapper">
@@ -290,8 +296,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 VTEC. All rights reserved.</p>
-                <p>Amman, Jordan</p>
+                <p>&copy; VTEC. All rights reserved.</p>
             </div>
         </div>
     </footer>

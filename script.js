@@ -1,5 +1,169 @@
 document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------
+    // Services Slider
+    // Shows 4 cards at a time, slides through all 7 services
+    // -------------------------------------------------------
+    const slider = document.getElementById('services-slider');
+    const prevBtn = document.getElementById('slider-prev');
+    const nextBtn = document.getElementById('slider-next');
+    const dotsContainer = document.getElementById('slider-dots');
+
+    if (slider && prevBtn && nextBtn) {
+        const items = Array.from(slider.querySelectorAll('.service-item'));
+        const total = items.length;
+
+        // Determine visible count based on screen width
+        function getVisible() {
+            if (window.innerWidth <= 540) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 4;
+        }
+
+        let current = 0;
+
+        function totalPages() {
+            return Math.ceil(total / getVisible());
+        }
+
+        // Build dots
+        function buildDots() {
+            dotsContainer.innerHTML = '';
+            const pages = totalPages();
+            for (let i = 0; i < pages; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (i === current ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function goTo(page) {
+            const vis = getVisible();
+            const pages = totalPages();
+            current = Math.max(0, Math.min(page, pages - 1));
+
+            // Hide/show items
+            items.forEach((item, idx) => {
+                const start = current * vis;
+                const end = start + vis;
+                item.style.display = (idx >= start && idx < end) ? '' : 'none';
+            });
+
+            prevBtn.disabled = current === 0;
+            nextBtn.disabled = current >= pages - 1;
+
+            // Update dots
+            Array.from(dotsContainer.querySelectorAll('.slider-dot')).forEach((dot, i) => {
+                dot.classList.toggle('active', i === current);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => goTo(current - 1));
+        nextBtn.addEventListener('click', () => goTo(current + 1));
+
+        // Rebuild on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                current = 0;
+                // Reset heights before re-measuring
+                items.forEach(item => { item.style.height = ''; item.style.display = ''; });
+                equaliseHeights();
+                buildDots();
+                goTo(0);
+            }, 150);
+        });
+
+        // Measure tallest card (all visible) then lock all to that height
+        function equaliseHeights() {
+            items.forEach(item => { item.style.height = ''; item.style.display = ''; });
+            const maxH = Math.max(...items.map(item => item.offsetHeight));
+            items.forEach(item => { item.style.height = maxH + 'px'; });
+        }
+
+        equaliseHeights();
+        buildDots();
+        goTo(0);
+    }
+
+    // -------------------------------------------------------
+    // Workshop Slider
+    // Shows 3 cards at a time, navigates to the 4th
+    // -------------------------------------------------------
+    const wSlider = document.getElementById('workshop-slider');
+    const wPrevBtn = document.getElementById('workshop-slider-prev');
+    const wNextBtn = document.getElementById('workshop-slider-next');
+    const wDotsContainer = document.getElementById('workshop-slider-dots');
+
+    if (wSlider && wPrevBtn && wNextBtn) {
+        const wItems = Array.from(wSlider.querySelectorAll('.workshop-card'));
+        const wTotal = wItems.length;
+        let wCurrent = 0;
+
+        function wGetVisible() {
+            if (window.innerWidth <= 540) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
+
+        function wTotalPages() {
+            return Math.ceil(wTotal / wGetVisible());
+        }
+
+        function wBuildDots() {
+            wDotsContainer.innerHTML = '';
+            for (let i = 0; i < wTotalPages(); i++) {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (i === wCurrent ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+                dot.addEventListener('click', () => wGoTo(i));
+                wDotsContainer.appendChild(dot);
+            }
+        }
+
+        function wGoTo(page) {
+            const vis = wGetVisible();
+            wCurrent = Math.max(0, Math.min(page, wTotalPages() - 1));
+            wItems.forEach((item, idx) => {
+                const start = wCurrent * vis;
+                item.style.display = (idx >= start && idx < start + vis) ? '' : 'none';
+            });
+            wPrevBtn.disabled = wCurrent === 0;
+            wNextBtn.disabled = wCurrent >= wTotalPages() - 1;
+            Array.from(wDotsContainer.querySelectorAll('.slider-dot')).forEach((dot, i) => {
+                dot.classList.toggle('active', i === wCurrent);
+            });
+        }
+
+        wPrevBtn.addEventListener('click', () => wGoTo(wCurrent - 1));
+        wNextBtn.addEventListener('click', () => wGoTo(wCurrent + 1));
+
+        function wEqualiseHeights() {
+            wItems.forEach(item => { item.style.height = ''; item.style.display = ''; });
+            const maxH = Math.max(...wItems.map(item => item.offsetHeight));
+            wItems.forEach(item => { item.style.height = maxH + 'px'; });
+        }
+
+        let wResizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(wResizeTimer);
+            wResizeTimer = setTimeout(() => {
+                wCurrent = 0;
+                wItems.forEach(item => { item.style.height = ''; item.style.display = ''; });
+                wEqualiseHeights();
+                wBuildDots();
+                wGoTo(0);
+            }, 150);
+        });
+
+        wEqualiseHeights();
+        wBuildDots();
+        wGoTo(0);
+    }
+
+    // -------------------------------------------------------
     // Mobile Navigation Toggle
     // Toggles 'active' class on nav menu and manages body scroll lock
     // -------------------------------------------------------
@@ -10,8 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
             const isExpanded = navMenu.classList.contains('active');
             mobileNavToggle.setAttribute('aria-expanded', isExpanded);
-            
-            // Prevent background scrolling when mobile menu is open
             if (isExpanded) {
                 document.body.style.overflow = 'hidden';
             } else {

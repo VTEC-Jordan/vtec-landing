@@ -18,9 +18,9 @@
     /* Spacing: Consistent scale for layout and components */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
-    --space-md: 2rem;
-    --space-lg: 4rem;
-    --space-xl: 8rem;
+    --space-md: 1.75rem;
+    --space-lg: 3rem;
+    --space-xl: 5rem;
     
     /* Typography: Inter for readability, Roboto Mono for technical accents */
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -140,14 +140,24 @@ img {
 }
 
 .btn-secondary {
-    background-color: transparent;
-    border-color: var(--border);
-    color: var(--text);
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #FFFFFF;
 }
 
 .btn-secondary:hover {
-    background-color: var(--bg-alt);
-    border-color: var(--text);
+    background-color: #005A63;
+    border-color: #005A63;
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .btn-secondary {
+    color: #121212;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background-color: #6DB3AB;
+    color: #121212;
 }
 
 .btn-sm {
@@ -359,7 +369,7 @@ select:focus-visible {
    SECTION: GENERAL PAGE SECTIONS
    ======================================== */
 .section {
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
 }
 
 .alternate-bg {
@@ -367,7 +377,7 @@ select:focus-visible {
 }
 
 .section-header {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
 }
 
 .section-header.centered {
@@ -435,12 +445,95 @@ select:focus-visible {
     gap: var(--space-md);
 }
 
+/* Services Slider */
+.services-slider-wrapper {
+    overflow: visible;
+    margin-top: 2rem;
+    padding-top: 6px;
+}
+
+.services-slider {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    align-items: stretch;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.slider-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.slider-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.slider-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.slider-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    padding: 0;
+}
+
+.slider-dot.active {
+    background-color: var(--accent);
+    transform: scale(1.2);
+}
+
+@media (max-width: 900px) {
+    .services-slider {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .services-slider {
+        grid-template-columns: 1fr;
+    }
+}
+
 .service-item {
     padding: var(--space-md);
     border: 1px solid var(--border);
     background-color: var(--card-bg);
     transition: var(--transition);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .service-item:hover {
@@ -734,6 +827,31 @@ select:focus-visible {
     gap: var(--space-md);
 }
 
+/* Workshop Slider */
+.workshop-slider-wrapper {
+    overflow: visible;
+    padding-top: 6px;
+}
+
+.workshop-slider {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    align-items: stretch;
+}
+
+@media (max-width: 900px) {
+    .workshop-slider {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .workshop-slider {
+        grid-template-columns: 1fr;
+    }
+}
+
 .workshop-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border);
@@ -827,8 +945,8 @@ select:focus-visible {
 
 @media (max-width: 768px) {
     :root {
-        --space-xl: 4rem;
-        --space-lg: 2.5rem;
+        --space-xl: 3rem;
+        --space-lg: 2rem;
     }
     
     .nav {
@@ -1220,7 +1338,7 @@ select:focus-visible {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: end;
+    align-items: stretch;
 }
 
 .visual-item {
@@ -1229,11 +1347,13 @@ select:focus-visible {
     gap: 1.5rem;
 }
 
-.section-header.centered {
-    min-height: 120px;
+.visual-item .section-header {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-height: 80px;
 }
 
 .visual-card {

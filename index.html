@@ -113,41 +113,48 @@
         <img src="assets/videos/pexels-rsantos1232-3888151.jpg" alt="Backend systems and engineering" loading="lazy">
       </div>
     </div>
-    <div class="services-grid">
-      <div class="service-item" style="--i:1">
-        <span class="service-num">01</span>
-        <h3 class="service-title">Web platforms</h3>
-        <p class="service-desc">Websites, dashboards, customer portals, and internal tools built fast and maintainable for real business workflows.</p>
+    <div class="services-slider-wrapper">
+      <div class="services-slider" id="services-slider">
+        <div class="service-item">
+          <span class="service-num">01</span>
+          <h3 class="service-title">Web platforms</h3>
+          <p class="service-desc">Websites, dashboards, customer portals, and internal tools built fast and maintainable for real business workflows.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">02</span>
+          <h3 class="service-title">Mobile apps</h3>
+          <p class="service-desc">Customer-facing and operational apps designed with clean architecture and practical delivery timelines.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">03</span>
+          <h3 class="service-title">Backend systems</h3>
+          <p class="service-desc">Scalable architectures and databases that support growth without constant rework or scaling crises.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">04</span>
+          <h3 class="service-title">DevOps & automation</h3>
+          <p class="service-desc">Infrastructure, CI/CD pipelines, and automation that let teams deploy faster and work less manually.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">05</span>
+          <h3 class="service-title">CRM automation</h3>
+          <p class="service-desc">We streamline CRM workflows, automate repetitive follow-ups, connect lead pipelines, and reduce manual admin so teams can move faster with less operational friction.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">06</span>
+          <h3 class="service-title">RAG AI for websites</h3>
+          <p class="service-desc">We build retrieval-based AI assistants that use your company's own content to answer questions, guide users, and improve support without relying on generic chatbot responses.</p>
+        </div>
+        <div class="service-item">
+          <span class="service-num">07</span>
+          <h3 class="service-title">Technical consulting</h3>
+          <p class="service-desc">Roadmaps, feasibility validation, and execution planning grounded in actual delivery experience.</p>
+        </div>
       </div>
-      <div class="service-item" style="--i:2">
-        <span class="service-num">02</span>
-        <h3 class="service-title">Mobile apps</h3>
-        <p class="service-desc">Customer-facing and operational apps designed with clean architecture and practical delivery timelines.</p>
-      </div>
-      <div class="service-item" style="--i:3">
-        <span class="service-num">03</span>
-        <h3 class="service-title">Backend systems</h3>
-        <p class="service-desc">Scalable architectures and databases that support growth without constant rework or scaling crises.</p>
-      </div>
-      <div class="service-item" style="--i:4">
-        <span class="service-num">04</span>
-        <h3 class="service-title">DevOps & automation</h3>
-        <p class="service-desc">Infrastructure, CI/CD pipelines, and automation that let teams deploy faster and work less manually.</p>
-      </div>
-      <div class="service-item" style="--i:5">
-        <span class="service-num">05</span>
-        <h3 class="service-title">CRM automation</h3>
-        <p class="service-desc">We streamline CRM workflows, automate repetitive follow-ups, connect lead pipelines, and reduce manual admin so teams can move faster with less operational friction.</p>
-      </div>
-      <div class="service-item" style="--i:6">
-        <span class="service-num">06</span>
-        <h3 class="service-title">RAG AI for websites</h3>
-        <p class="service-desc">We build retrieval-based AI assistants that use your company's own content to answer questions, guide users, and improve support without relying on generic chatbot responses.</p>
-      </div>
-      <div class="service-item" style="--i:7">
-        <span class="service-num">07</span>
-        <h3 class="service-title">Technical consulting</h3>
-        <p class="service-desc">Roadmaps, feasibility validation, and execution planning grounded in actual delivery experience.</p>
+      <div class="slider-controls">
+        <button class="slider-btn slider-prev" id="slider-prev" aria-label="Previous services">&#8592;</button>
+        <div class="slider-dots" id="slider-dots"></div>
+        <button class="slider-btn slider-next" id="slider-next" aria-label="Next services">&#8594;</button>
       </div>
     </div>
   </div>
@@ -174,7 +181,7 @@
       <div class="visual-item">
         <div class="section-header centered">
           <span class="section-label">AI capability</span>
-          <h2 class="section-title">Grounded knowledge assistant</h2>
+          <h2 class="section-title">Grounded knowledge AI</h2>
         </div>
         <div class="visual-card">
           <video autoplay muted loop playsinline class="visual-video">
@@ -342,8 +349,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 VTEC. All rights reserved.</p>
-                <p>Amman, Jordan</p>
+                <p>&copy; VTEC. All rights reserved.</p>
             </div>
         </div>
     </footer>
