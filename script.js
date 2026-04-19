@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.error('Form submission error:', err);
-                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at hello@vtec.example';
+                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.error('Partner form submission error:', err);
-                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at hello@vtec.example';
+                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.error('Workshop form submission error:', err);
-                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at hello@vtec.example';
+                formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
