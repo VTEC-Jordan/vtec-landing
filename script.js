@@ -201,16 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScrollTop = 0;
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-            // Scrolling down
-            header.classList.add('hide');
-        } else {
-            // Scrolling up
-            header.classList.remove('hide');
+        const scrollTop = window.scrollY;
+        if (header) {
+            if (scrollTop > lastScrollTop) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
         }
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
+    }, { passive: true });
 
     // -------------------------------------------------------
     // Theme Toggle (Dark/Light Mode)
@@ -493,10 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Selectors for ScrollFloat — about section and everything from services down,
         // deliberately excluding .service-item content (the cards shown in the slider).
-        const scrollFloatTargets = [
-            '.services .section-header .section-label',
-            '.services .section-header .section-title',
-        ];
+        const scrollFloatTargets = [];
 
         scrollFloatTargets.forEach(selector => {
             document.querySelectorAll(selector).forEach(el => {

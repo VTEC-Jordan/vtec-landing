@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var COLOR   = [0x00 / 255, 0x6D / 255, 0x77 / 255]; // #006D77 site teal
     var NOISE   = 1.5;
     var ROT     = 0.5;
-    var dpr     = Math.min(2, window.devicePixelRatio || 1);
+    var dpr     = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 768 ? 1 : 2);
 
     // ── Canvas + context ──────────────────────────────────────
     var canvas = document.createElement('canvas');
@@ -128,10 +128,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Render loop ───────────────────────────────────────────
     var t0 = performance.now();
+    var rafId = null;
+    var paused = false;
     function render(ts) {
-        gl.uniform1f(U.uTime, (ts - t0) * 0.001);
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-        requestAnimationFrame(render);
+        if (!paused) {
+            gl.uniform1f(U.uTime, (ts - t0) * 0.001);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+        }
+        rafId = requestAnimationFrame(render);
     }
-    requestAnimationFrame(render);
+    document.addEventListener('visibilitychange', function () {
+        paused = document.hidden;
+        if (!paused && !rafId) { t0 = performance.now(); rafId = requestAnimationFrame(render); }
+    });
+    rafId = requestAnimationFrame(render);
 });

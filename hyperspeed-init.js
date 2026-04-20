@@ -597,7 +597,7 @@ class App {
 
         this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
         this.renderer.setSize(w, h, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
         this.composer = new EffectComposer(this.renderer);
         container.appendChild(this.renderer.domElement);
 
@@ -766,12 +766,12 @@ class App {
             if (this.hasValidSize) { this.camera.aspect = canvas.clientWidth / canvas.clientHeight; this.camera.updateProjectionMatrix(); }
         }
 
-        if (this.hasValidSize) {
+        if (this.hasValidSize && !document.hidden) {
             const delta = this.clock.getDelta();
             this.render(delta);
             this.update(delta);
         }
-        requestAnimationFrame(this.tick);
+        this.rafId = requestAnimationFrame(this.tick);
     }
 }
 

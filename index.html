@@ -52,6 +52,7 @@
 
     <!-- JS -->
     <script defer src="script.js"></script>
+    <script defer src="logoloop.js"></script>
     <script type="module" src="hyperspeed-init.js"></script>
 
     <!-- Structured Data: Organization schema for Google rich results -->
@@ -88,6 +89,10 @@
                 </nav>
                 <div class="header-actions">
                     <a href="#contact" class="btn btn-primary btn-sm">Contact Us</a>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
                     <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation menu">
                         <span class="bar"></span>
                         <span class="bar"></span>
@@ -136,30 +141,11 @@
       <span class="section-label">Services</span>
       <h2 class="section-title">What we build</h2>
     </div>
-    <!-- Services Visual: Two Photos -->
-    <div class="services-visual">
-      <div class="services-photo-card">
-        <img src="assets/videos/pexels-itsemshuvo-6608248.jpg" alt="Web and mobile development" loading="lazy">
-      </div>
-      <div class="services-photo-card">
-        <img src="assets/videos/pexels-rsantos1232-3888151.jpg" alt="Backend systems and engineering" loading="lazy">
-      </div>
-    </div>
     <div class="services-slider-wrapper">
       <div class="services-slider" id="services-slider">
         <div class="service-item">
           <span class="service-scene service-scene--web" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="scene-stroke scene-motion" x="16" y="10" width="48" height="26" rx="5"/>
-              <path class="scene-soft scene-motion" d="M16 18H64"/>
-              <path class="scene-soft scene-rest scene-motion" d="M28 27H36"/>
-              <path class="scene-soft scene-rest scene-motion" d="M41 27H52"/>
-              <path class="scene-awake scene-motion" d="M25 24H39"/>
-              <path class="scene-awake scene-motion" d="M43 24H55"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="25" cy="15" r="1.8"/>
-              <path class="scene-soft scene-rest scene-motion" d="M10 13.5C12.5 11.2 12.5 15.8 15 13.5"/>
-              <path class="scene-soft scene-rest scene-motion" d="M8.5 10.5C10.2 8.9 10.2 12.1 11.9 10.5"/>
-            </svg>
+            <img src="assets/videos-images/coding.png" alt="" class="service-icon">
           </span>
           <span class="service-num">01</span>
           <h3 class="service-title">Web platforms</h3>
@@ -167,14 +153,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--mobile" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="scene-stroke scene-motion" x="28" y="7" width="24" height="34" rx="6"/>
-              <path class="scene-soft scene-motion" d="M35 13H45"/>
-              <rect class="scene-soft scene-rest scene-motion" x="33" y="18" width="14" height="11" rx="2.5"/>
-              <rect class="scene-awake scene-motion" x="33" y="16" width="14" height="15" rx="3"/>
-              <path class="scene-awake scene-motion" d="M55 18L60 18C62.8 18 65 20.2 65 23C65 25.8 62.8 28 60 28H55"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="60" cy="23" r="2"/>
-            </svg>
+            <img src="assets/videos-images/mobile-development.png" alt="" class="service-icon">
           </span>
           <span class="service-num">02</span>
           <h3 class="service-title">Mobile apps</h3>
@@ -182,16 +161,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--backend" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="scene-stroke scene-motion" x="20" y="9" width="40" height="8" rx="3"/>
-              <rect class="scene-stroke scene-motion" x="20" y="20" width="40" height="8" rx="3"/>
-              <rect class="scene-stroke scene-motion" x="20" y="31" width="40" height="8" rx="3"/>
-              <path class="scene-soft scene-motion" d="M27 13H34"/>
-              <path class="scene-soft scene-motion" d="M27 24H34"/>
-              <path class="scene-soft scene-motion" d="M27 35H34"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="48" cy="35" r="2.2"/>
-              <path class="scene-awake scene-motion" d="M48 35V13"/>
-            </svg>
+            <img src="assets/videos-images/backend.png" alt="" class="service-icon">
           </span>
           <span class="service-num">03</span>
           <h3 class="service-title">Backend systems</h3>
@@ -199,14 +169,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--devops" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="scene-soft scene-motion" d="M19 29C27 29 27 17 35 17H45C53 17 53 29 61 29"/>
-              <circle class="scene-stroke scene-motion" cx="19" cy="29" r="4"/>
-              <circle class="scene-stroke scene-motion" cx="40" cy="17" r="4"/>
-              <circle class="scene-stroke scene-motion" cx="61" cy="29" r="4"/>
-              <path class="scene-awake scene-motion" d="M19 29C27 29 27 17 35 17H45C53 17 53 29 61 29"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="19" cy="29" r="2.1"/>
-            </svg>
+            <img src="assets/videos-images/DevOps.png" alt="" class="service-icon">
           </span>
           <span class="service-num">04</span>
           <h3 class="service-title">DevOps & automation</h3>
@@ -214,14 +177,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--crm" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="scene-soft scene-motion" x="15" y="18" width="14" height="12" rx="3"/>
-              <rect class="scene-soft scene-motion" x="33" y="14" width="14" height="16" rx="3"/>
-              <rect class="scene-soft scene-motion" x="51" y="10" width="14" height="20" rx="3"/>
-              <path class="scene-soft scene-motion" d="M29 24H33"/>
-              <path class="scene-soft scene-motion" d="M47 22H51"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="22" cy="24" r="2.2"/>
-            </svg>
+            <img src="assets/videos-images/crm.png" alt="" class="service-icon">
           </span>
           <span class="service-num">05</span>
           <h3 class="service-title">CRM automation</h3>
@@ -229,15 +185,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--rag" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="scene-stroke scene-motion" x="14" y="10" width="52" height="26" rx="5"/>
-              <path class="scene-soft scene-motion" d="M14 17H66"/>
-              <path class="scene-soft scene-motion" d="M22 24H35"/>
-              <path class="scene-soft scene-motion" d="M22 29H31"/>
-              <rect class="scene-awake scene-motion" x="40" y="21" width="16" height="10" rx="3"/>
-              <path class="scene-awake scene-motion" d="M48 18V14"/>
-              <circle class="scene-fill scene-awake scene-motion" cx="48" cy="13" r="2.1"/>
-            </svg>
+            <img src="assets/videos-images/artificial-intelligence.png" alt="" class="service-icon">
           </span>
           <span class="service-num">06</span>
           <h3 class="service-title">RAG AI for websites</h3>
@@ -245,15 +193,7 @@
         </div>
         <div class="service-item">
           <span class="service-scene service-scene--consulting" aria-hidden="true">
-            <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="scene-soft scene-motion" d="M16 31L30 23L42 26L60 15"/>
-              <circle class="scene-stroke scene-motion" cx="16" cy="31" r="3.5"/>
-              <circle class="scene-stroke scene-motion" cx="30" cy="23" r="3.5"/>
-              <circle class="scene-stroke scene-motion" cx="42" cy="26" r="3.5"/>
-              <circle class="scene-stroke scene-motion" cx="60" cy="15" r="3.5"/>
-              <path class="scene-awake scene-motion" d="M57 12L60 15L63.5 11.5"/>
-              <path class="scene-awake scene-motion" d="M60 15L67 10"/>
-            </svg>
+            <img src="assets/videos-images/consultant.png" alt="" class="service-icon">
           </span>
           <span class="service-num">07</span>
           <h3 class="service-title">Technical consulting</h3>
@@ -272,34 +212,12 @@
 <!-- Visual Showcase Section - CRM & AI Side by Side -->
 <section class="section visual-showcase" id="visual-showcase">
   <div class="container">
-    <div class="visual-grid">
-      <!-- CRM Automation Visual -->
-      <div class="visual-item">
-        <div class="section-header centered">
-          <span class="section-label">Workflow automation</span>
-          <h2 class="section-title">CRM pipeline in motion</h2>
-        </div>
-        <div class="visual-card">
-          <video autoplay muted loop playsinline class="visual-video">
-            <source src="assets/videos/14825509_1080_1920_25fps.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      
-      <!-- AI Assistant Visual -->
-      <div class="visual-item">
-        <div class="section-header centered">
-          <span class="section-label">AI capability</span>
-          <h2 class="section-title">Grounded knowledge AI</h2>
-        </div>
-        <div class="visual-card">
-          <video autoplay muted loop playsinline class="visual-video">
-            <source src="assets/videos/15254965_1920_1080_24fps.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
+    <div class="section-header centered">
+      <span class="section-label">Our stack</span>
+      <h2 class="section-title">Technologies we build with</h2>
     </div>
   </div>
+  <div id="logo-loop-mount" class="logo-loop-wrapper"></div>
 </section>
 
 <!-- Process Visual Section -->
@@ -331,25 +249,6 @@
   </div>
 </section>
 
-  <!-- Section: Ecosystem - Community engagement and youth empowerment initiatives -->
-  <section class="section workshops alternate-bg" id="workshops">
-    <div class="container grid-layout">
-      <div class="section-header">
-        <span class="section-label">Technical support</span>
-        <h2 class="section-title">When companies need more engineering capacity</h2>
-      </div>
-      <div class="section-body">
-        <p class="text-large">We work with founders who need technical execution but can't hire full-time seniors, operators fixing technical debt, and companies building new products or internal systems.</p>
-        <ul class="feature-list">
-          <li><strong>Startups:</strong> From MVP to scalable product, we handle the engineering so you focus on market.</li>
-          <li><strong>Growth companies:</strong> Fix weak systems, automate operations, build new features without distraction.</li>
-          <li><strong>Established firms:</strong> Web/mobile delivery, technical upgrades, and specialized engineering projects.</li>
-          <li><strong>Local focus:</strong> Amman-based with deep understanding of Jordan's business and technical landscape.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- Section: Why VTEC - Competitive advantages and regional relevance -->
   <section class="section why-vtec" id="why-vtec">
     <div class="container">
@@ -378,6 +277,25 @@
     </div>
   </section>
 
+  <!-- Section: Ecosystem - Community engagement and youth empowerment initiatives -->
+  <section class="section workshops alternate-bg" id="workshops">
+    <div class="container grid-layout">
+      <div class="section-header">
+        <span class="section-label">Technical support</span>
+        <h2 class="section-title">When companies need more engineering capacity</h2>
+      </div>
+      <div class="section-body">
+        <p class="text-large">We work with founders who need technical execution but can't hire full-time seniors, operators fixing technical debt, and companies building new products or internal systems.</p>
+        <ul class="feature-list">
+          <li><strong>Startups:</strong> From MVP to scalable product, we handle the engineering so you focus on market.</li>
+          <li><strong>Growth companies:</strong> Fix weak systems, automate operations, build new features without distraction.</li>
+          <li><strong>Established firms:</strong> Web/mobile delivery, technical upgrades, and specialized engineering projects.</li>
+          <li><strong>Local focus:</strong> Amman-based with deep understanding of Jordan's business and technical landscape.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- Section: Partners - Trust signals and collaboration network -->
   <section class="section partners" id="partners">
     <div class="container">
@@ -387,10 +305,12 @@
       </div>
       <p class="section-subtitle">Startups, operators, and established businesses across Jordan that need technical delivery.</p>
       <div class="logo-strip-placeholder">
-        <div class="logo-item-placeholder"><span>Client 1</span></div>
-        <div class="logo-item-placeholder"><span>Client 2</span></div>
-        <div class="logo-item-placeholder"><span>Client 3</span></div>
-        <div class="logo-item-placeholder
+        <div class="logo-item-placeholder"><img src="assets/videos-images/525882777_17842597716549535_7077091234391460187_n.jpg" alt="Ocho" loading="lazy"></div>
+        <div class="logo-item-placeholder"><img src="assets/videos-images/theplatformjo_logo.jfif" alt="The Platform" loading="lazy"></div>
+        <div class="logo-item-placeholder"><img src="assets/videos-images/hivejor_logo.jfif" alt="Hive" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
 
         <!-- Section: Contact - Lead generation form with Google Apps Script integration -->
         <section class="section cta-section" id="contact">
@@ -451,7 +371,7 @@
                         <h4>Connect</h4>
                         <ul>
                             <li><a href="#contact">Contact Form</a></li>
-                            <li><a href="mailto:info@vtec-jo.com" aria-label="Contact us via email">Email</a></li>
+                            <li><a href="mailto:info@vtec-jo.com" aria-label="Contact us via email">info@vtec-jo.com</a></li>
                             <li><a href="https://www.linkedin.com/company/venture-tech-consultancy/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn profile">LinkedIn</a></li>
                         </ul>
                     </div>

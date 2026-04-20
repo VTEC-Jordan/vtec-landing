@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var TS         = 0.5;
     var HUE        = 0.0;
     var MIN_AXIS   = Math.min(BASE_HALF, H);
-    var dpr        = Math.min(2, window.devicePixelRatio || 1);
+    var dpr        = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 768 ? 1 : 2);
+    var isMobile   = window.innerWidth <= 768;
 
     // ── Canvas + context ──────────────────────────────────────
     var canvas = document.createElement('canvas');
@@ -190,10 +191,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Render loop ───────────────────────────────────────────
     var t0 = performance.now();
+    var rafId = null;
+    var paused = false;
     function render(ts) {
-        gl.uniform1f(U.iTime, (ts - t0) * 0.001);
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
-        requestAnimationFrame(render);
+        if (!paused) {
+            gl.uniform1f(U.iTime, (ts - t0) * 0.001);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+        }
+        rafId = requestAnimationFrame(render);
     }
-    requestAnimationFrame(render);
+    document.addEventListener('visibilitychange', function () {
+        paused = document.hidden;
+        if (!paused && !rafId) { t0 = performance.now(); rafId = requestAnimationFrame(render); }
+    });
+    rafId = requestAnimationFrame(render);
 });
