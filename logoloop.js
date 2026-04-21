@@ -53,16 +53,13 @@
         li.className = 'logoloop__item';
         li.setAttribute('role', 'listitem');
         if (item.title) li.setAttribute('title', item.title);
-        if (item.html) {
-          li.innerHTML = item.html;
-        } else if (item.src) {
+        if (item.src) {
           var img = document.createElement('img');
           img.src = item.src;
           img.alt = item.alt || item.title || '';
           img.loading = 'lazy';
           img.draggable = false;
           li.appendChild(img);
-        }
         ul.appendChild(li);
       }
       return ul;

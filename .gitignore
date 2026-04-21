@@ -1,0 +1,21 @@
+# OS & editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Build / temp outputs
+*.min.css
+*.min.js
+dist/
+build/
+
+# Sensitive / internal dev files — never commit these
+AUDIT.md
+*-audit.md
+*.secret
+.env
+.env.*

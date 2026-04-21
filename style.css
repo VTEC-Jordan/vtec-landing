@@ -24,7 +24,7 @@
     
     /* Typography: Inter for readability, Roboto Mono for technical accents */
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-mono: 'Roboto Mono', monospace;
+    --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
     
     /* Layout: Standardized dimensions and effects */
     --container-width: 1200px;

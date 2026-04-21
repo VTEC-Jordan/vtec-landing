@@ -779,6 +779,9 @@ class App {
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('hero-hyperspeed');
     if (!container) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const _conn = navigator.connection || navigator.mozConnection;
+    if (_conn && (_conn.saveData || ['slow-2g', '2g', '3g'].includes(_conn.effectiveType))) return;
 
     const options = {
         ...DEFAULT_EFFECT_OPTIONS,

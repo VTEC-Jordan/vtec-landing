@@ -1,0 +1,12 @@
+{
+  "name": "VTEC",
+  "short_name": "VTEC",
+  "description": "Senior engineering partner for web, mobile, and AI in Jordan.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#006D77",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -282,8 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
             })
-            .catch(err => {
-                console.error('Form submission error:', err);
+            .catch(() => {
                 formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
@@ -335,8 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(data.error || 'Unknown error');
                 }
             })
-            .catch(err => {
-                console.error('Partner form submission error:', err);
+            .catch(() => {
                 formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
@@ -390,8 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(data.error || 'Unknown error');
                 }
             })
-            .catch(err => {
-                console.error('Workshop form submission error:', err);
+            .catch(() => {
                 formStatus.textContent = 'Form submission failed. Please check your internet connection or email us directly at info@vtec-jo.com';
                 formStatus.style.color = 'var(--color-error, red)';
                 submitBtn.disabled = false;
@@ -538,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.appendChild(inner);
     }
 
-    ['.services .service-item', '.logo-item-placeholder'].forEach(selector => {
+    ['.logo-item-placeholder'].forEach(selector => {
         document.querySelectorAll(selector).forEach(applyStarBorder);
     });
 
